@@ -152,6 +152,9 @@
     width: 5px;
     z-index: 2;
 }
+field_error{
+color:red;
+}
 
 .section__title h2 {
     color: #313131;

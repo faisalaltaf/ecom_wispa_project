@@ -100,8 +100,9 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="copyright__inner">
+                        
                                 <p>Copyright© <a href="https://freethemescloud.com/">Free themes Cloud</a> 2018. All right reserved.</p>
-                                <a href="#"><img src="images/others/shape/paypol.png" alt="payment images"></a>
+                                <a href="#"><img src="asset_front/images/others/shape/paypol.png" alt="payment images"></a>
                             </div>
                         </div>
                     </div>
@@ -127,7 +128,7 @@
     <script src="asset_front/js/waypoints.min.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="asset_front/js/main.js"></script>
-
-</body>
-
-</html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	 -->

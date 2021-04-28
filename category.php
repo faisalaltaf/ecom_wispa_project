@@ -3,8 +3,15 @@ require "config.php";
 require "func1.php";
 
 $cat_id = mysqli_real_escape_string($conn, $_GET['id']);
+if($cat_id>0){
+    $get_product = get_product($conn, '', $cat_id);
+    
+}else{
+header("Location: {$hostname}/index.php");
+}
+    ?>
+    <!-- <script>window.location.href='index.php'</script> -->
 
-?>
 
 
 
@@ -59,7 +66,6 @@ $cat_id = mysqli_real_escape_string($conn, $_GET['id']);
                     <div class="row">
                    
 <?php 
-  $get_product = get_product($conn, '', $cat_id);
 if(count($get_product)>0){
 
  ?> 

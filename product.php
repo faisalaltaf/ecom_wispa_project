@@ -3,9 +3,18 @@ require "config.php";
 require "func1.php";
 
 $product_id= mysqli_real_escape_string($conn, $_GET['id']);
-$get_product = get_product($conn,'','',$product_id);
-// print_r($get_product);
+if($product_id>0){
+
+    $get_product = get_product($conn, '','', $product_id);
+}else{
+    header("Location: {$hostname}/");
+die();
+}
+    
+
+
 ?>
+<!-- // print_r($get_product); -->
 <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(asset_front/images/bg/4.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
                 <div class="container">
@@ -65,58 +74,34 @@ $get_product = get_product($conn,'','',$product_id);
                                 </ul>
                                 <p class="pro__info">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.  Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan</p>
                                 <div class="ht__pro__desc">
+                                <div class="cr__btn">
+                                            <a href="cart.html">CHECKOUT</a>
+                                        </div>
+                                    <div class="sin__desc align--left">
+                                    <p>QTY:</p>
+                                        <select name="" id="qty" class="select__size">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        </select>
+                                    </div>
+                                        
                                     <div class="sin__desc">
                                         <p><span>Availability:</span> In Stock</p>
                                     </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>color:</span></p>
-                                        <ul class="pro__color">
-                                            <li class="red"><a href="#">red</a></li>
-                                            <li class="green"><a href="#">green</a></li>
-                                            <li class="balck"><a href="#">balck</a></li>
-                                        </ul>
-                                        <div class="pro__more__btn">
-                                            <a href="#">more</a>
-                                        </div>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>size</span></p>
-                                        <select class="select__size">
-                                            <option>s</option>
-                                            <option>l</option>
-                                            <option>xs</option>
-                                            <option>xl</option>
-                                            <option>m</option>
-                                            <option>s</option>
-                                        </select>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>Categories:</span></p>
-                                        <ul class="pro__cat__list">
-                                            <li><a href="#">Fashion,</a></li>
-                                            <li><a href="#">Accessories,</a></li>
-                                            <li><a href="#">Women,</a></li>
-                                            <li><a href="#">Men,</a></li>
-                                            <li><a href="#">Kid,</a></li>
-                                            <li><a href="#">Mobile,</a></li>
-                                            <li><a href="#">Computer,</a></li>
-                                            <li><a href="#">Hair,</a></li>
-                                            <li><a href="#">Clothing,</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="sin__desc align--left">
-                                        <p><span>Product tags:</span></p>
-                                        <ul class="pro__cat__list">
-                                            <li><a href="#">Fashion,</a></li>
-                                            <li><a href="#">Accessories,</a></li>
-                                            <li><a href="#">Women,</a></li>
-                                            <li><a href="#">Men,</a></li>
-                                            <li><a href="#">Kid,</a></li>
-                                        </ul>
-                                    </div>
+                                    
+                                   
 
                                     <div class="sin__desc product__share__link">
-                                        <p><span>Share this:</span></p>
+                                        <p><span>Categories:</span></p>
+                                  <a class="breadcrumb-item" href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product[0]['id']?>','add')"><?php echo $get_product[0]['categories'] ?></a>
                                         <ul class="pro__share">
                                             <li><a href="#" target="_blank"><i class="icon-social-twitter icons"></i></a></li>
 

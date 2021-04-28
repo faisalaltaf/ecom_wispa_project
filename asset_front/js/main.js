@@ -431,6 +431,119 @@
 
 })(jQuery);
 
+//   contact form 
+function send_massage1(){
+  
+    var name=jQuery('#name').val();
+    var email=jQuery('#email').val();
+    var mobile=jQuery('#mobile').val();
+    var address=jQuery('#address').val();
+    var is_error="";
+
+    if(name ==""){
+        alert('entre the name');
+    }else if(email ==""){
+        alert('entre the email');
+
+    }else if(mobile ==""){
+        alert('entre the mobile');
+        
+    }else if(address ==""){
+        alert('entre the address');
+        
+    }else{
+        jQuery.ajax({
+    url:'send_massage.php',
+    type: 'post',
+    data: 
+    {
+					name: name,
+					email: email,
+					mobile: mobile,
+					address: address				
+				},      
+    success:function(result){
+        alert(result)
+    }
+});
+    }
+
+    }
 
 
+//  register query 
+
+function user_register(){
+  jQuery('.field_error').html('');
+    var name=jQuery('#name').val();
+    var email=jQuery('#email').val();
+    var mobile=jQuery('#mobile').val();
+    var password=jQuery('#password').val();
+    var is_error="";
+
+    if(name ==""){
+        jQuery('#name_error').html('entre the name');
+        is_error='yes';
+    }
+
+    if(email ==""){
+        jQuery('#email_error').html('entre the email');
+        is_error='yes';
+    }
+
+    if(mobile ==""){
+        jQuery('#mobile_error').html('entre the mobile');
+        is_error='yes';
+    }
+
+    if(password ==""){
+        jQuery('#password_error').html('entre the password');
+        is_error='yes';
+    }
+    if(is_error==''){
+        jQuery.ajax({
+            url:'user_register.php',
+            type: 'post',
+            data: 
+            {
+                            name: name,
+                            email: email,
+                            mobile: mobile,
+                            password: password				
+                        },      
+                        success:function(result){
+                            alert(result)
+                        }
+                
+                    
+            });
+        }
+}
+
+// add to cart 
+
+function manage_cart(pid){
+
+    var name=jQuery('#qty').val();
+
+
+   
+    jQuery.ajax({
+        url: "manage_cart",
+        type: 'post',
+        data: 
+        {
+                     
+                       pid: pid,
+                      qty: qty,
+                      type: type				
+                    },      
+                    success:function(result){
+                         jQuery('.htc__qua').result($result);
+                            
+    }
+                
+        });
+    }
+    
 

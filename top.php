@@ -1,12 +1,15 @@
 <?php include "config.php";
-
+session_start();
 
 $sql = mysqli_query($conn, "SELECT * FROM categories where status=1 order by categories asc");
 $cat_arr = array();
 while ($row = mysqli_fetch_assoc($sql)) {
-
+    
     $cat_arr[] = $row;
+ 
 }
+
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -14,7 +17,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Asbab - eCommerce HTML5 Templatee</title>
+    <title>FrontEnd</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,6 +46,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 </head>
 
 <body>
@@ -67,7 +71,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                             <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
                                 <nav class="main__menu__nav hidden-xs hidden-sm">
                                     <ul class="main__menu">
-                                        <li class="drop"><a href="index.php">Home</a></li>
+                                        <li class="drop" ><a href="index.php">Home</a></li>
 
                                         <?php
                                         foreach($cat_arr as $list){
@@ -75,7 +79,9 @@ while ($row = mysqli_fetch_assoc($sql)) {
                                         ?>
                                         <li class="drop"><a href="category.php?id=<?php echo $list['id'] ?>"><?php echo $list['categories'] ?></a></li>
                                         <?php }?>
-                                        <li class="drop"><a href="#">contact</a></li>
+                                       
+
+                                        <li class="drop"><a href="contact.php"> <?php ?> contact</a></li>
                                     </ul>
                                   
 
@@ -90,7 +96,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                                         <li class="drop"><a href="categories.php?id=<?php echo $list['id'] ?>"><?php echo $list['categories']?></a></li>
                                         <?php }?>
                                             
-                                            <li><a href="contact.html">contact</a></li>
+                                            <li><a href="contact.php">contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -100,8 +106,18 @@ while ($row = mysqli_fetch_assoc($sql)) {
                             </div>
                             <div class="col-md-3 col-lg-2 col-sm-4 col-xs-4">
                                 <div class="header__right">
-                                    <div class="header__search search search__open">
-                                        <a href="#"><i class="icon-magnifier icons"></i></a>
+                                    <div class="header__account">
+                                 <?php
+                                 if(isset($_SESSION['LOGIN_USER'])){
+                                    echo  '<a href="logout.php">Logout</a>';
+
+                                 }else{
+                                    echo  '<a href="login.php">Login/Register</a>';
+                                 }
+                                 
+                                 ?>
+
+                                
                                     </div>
                                     <div class="header__account">
                                         <a href="#"><i class="icon-user icons"></i></a>
