@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
     <!-- Responsive css -->
     <link rel="stylesheet" href="asset_front/css/responsive.css">
     <!-- User style -->
-    <link rel="stylesheet" href="asset_front/css/custom.css">
+    <link rel="stylesheet" href="custom.css">
 
 
     <!-- Modernizr JS -->

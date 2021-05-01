@@ -45,6 +45,7 @@ require "func1.php";
                                     </thead>
                                     <tbody>
                                     <?php 
+                                    $cart_total=0;
                             foreach($_SESSION['cart'] as $key=>$val){
 
                             $productArr= get_product($conn,'','',$key);
@@ -53,7 +54,7 @@ require "func1.php";
                             $price= $productArr[0]['price'];
                             $image= $productArr[0]['image'];
                             $qty=$val['qty'];
-
+                            $cart_total= $cart_total+($price*$qty);
                                    $total = $qty*$price; 
                                     ?>
                                         <tr>
@@ -82,7 +83,7 @@ require "func1.php";
                                         </div>
                                         <div class="buttons-cart checkout--btn">
                                         <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','update')">update</a>
-                                            <a href="#">checkout</a>
+                                            <a href="checkout.php">checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -110,18 +111,25 @@ require "func1.php";
                                             </ul>
                                             
                                             <ul class="cart__price">
-                                                </php><li><?php echo  $total ?> </li>
+                                                </php><li><?php echo  $cart_total ?> </li>
                                                 <li><?php echo $x=50;  ?></li>
                                                 <li><?php echo $y=150;  ?></li>
                                             </ul>
+                                            <?php if($cart_total==0){
+                                                $x=0;
+                                                $y=0;
+                                            }else{
+                                                $x=50;
+                                                $y=150;
+                                            } ?>
                                         </div>
                                         <div class="cart__total">
                                             <span>order total</span>
-                                            <span><?php echo $total+$x+$y;  ?></span>
+                                            <span><?php echo $cart_total+($x+$y);  ?></span>
                                         </div>
                                         <ul class="payment__btn">
                                             <li class="active"><a href="#">payment</a></li>
-                                            <li><a href="#">continue shopping</a></li>
+                                            <li><a href="index.php">continue shopping</a></li>
                                         </ul>
                                     </div>
                                 </div>

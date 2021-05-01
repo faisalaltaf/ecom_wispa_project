@@ -520,6 +520,9 @@ function user_register(){
         }
 }
 
+// login 
+
+
 // add to cart 
 
 function manage_cart(pid,type){
@@ -542,7 +545,7 @@ function manage_cart(pid,type){
                     },     
                     success:function(result){
                         if(type =='update' || type =='remove'){
-                           window.location.href='cart.php';
+                           window.location.href=window.location.href;
                         }
                          jQuery('.htc__qua').html(result)
                             

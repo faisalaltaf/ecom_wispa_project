@@ -1,373 +1,238 @@
 <?php require "top.php";
 require "config.php";
 require "func1.php";
+if(!isset($_SESSION['cart']) || count($_SESSION['cart'])==0){
+    ?>
+    <script>
+    window.location.href="index.php"
+    </script>
+<?php
+}
 
-    
+
+    ?>
+    <!-- <script>window.location.href='index.php'</script> -->
 
 
-?>
-<!-- // print_r($get_product); -->
-<div class="checkout-wrap ptb--100">
+
+
+    <div class="ht__bradcaump__wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="bradcaump__inner">
+                                <nav class="bradcaump-inner">
+                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
+                                  <span class="breadcrumb-item active">shopping cart</span>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-wrap ptb--100">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="checkout__inner">
                             <div class="accordion-list">
                                 <div class="accordion">
-                                    <div class="accordion__title">
+                                    <?php 
+                                    
+                                    $accordion_class="accordion__title";
+                                    if(!isset($_SESSION['LOGIN_USER'])){ 
+                                        $accordion_class="accordion__hide";
+                                    ?>
+                                    <div class="accordion__title active">
                                         Checkout Method
                                     </div>
-                                    <div class="accordion__body" style="display: none;">
+                                    <div class="accordion__body" style="">
                                         <div class="accordion__body__form">
                                             <div class="row">
-                                                <div class="col-md-7">
-                                                    <div class="checkout-method">
-                                                        <form action="#">
-                                                            <div class="checkout-method__single">
-                                                                <h5 class="checkout-method__title"><i class="zmdi zmdi-caret-right"></i>CHECKOUT AS A GUEST OR REGISTER</h5>
-                                                                <p class="checkout-method__subtitle">Register with us for future convenience:</p>
-                                                                <div class="single-input">
-                                                                    <input type="radio" id="checkout-method-1" name="checkout-method" checked="checked">
-                                                                    <label for="checkout-method-1">Checkout as guest</label>
-                                                                </div>
-                                                                <div class="single-input">
-                                                                    <input type="radio" id="checkout-method-2" name="checkout-method">
-                                                                    <label for="checkout-method-2">Register</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="checkout-method__single">
-                                                                <h5 class="checkout-method__title"><i class="zmdi zmdi-caret-right"></i>REGISTER AND SAVE TIME</h5>
-                                                                <p class="checkout-method__subtitle">Register with us for future convenience:</p>
-                                                                <div class="single-input">
-                                                                    <input type="radio" id="register-method-1" name="register-method" checked="checked">
-                                                                    <label for="register-method-1">Fast and easy check out</label>
-                                                                </div>
-                                                                <div class="single-input">
-                                                                    <input type="radio" id="register-method-2" name="register-method">
-                                                                    <label for="register-method-2">Easy access to your order history and status</label>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-5">
+                                                    <div class="checkout-method">
                                                     <div class="checkout-method__login">
-                                                        <form action="#">
+                                                    <form id="login-form"  method="post">
                                                             <h5 class="checkout-method__title">Login</h5>
                                                             <h5 class="checkout-method__title">Already Registered?</h5>
                                                             <p class="checkout-method__subtitle">Please login below:</p>
                                                             <div class="single-input">
                                                                 <label for="user-email">Email Address</label>
-                                                                <input name="email" type="email" id="user-email">
+                                                                <input type="email"  name="email" id="login_email" placeholder="Your Email*" style="width:100%">
+                                                                <span style="color: red;" class="field_error" id="login_email_error"></span>
+
                                                             </div>
+
                                                             <div class="single-input">
                                                                 <label for="user-pass">Password</label>
-                                                                <input name="password" type="password" id="user-pass">
+                                                                <input type="password"  name="password" id="login_password" placeholder="Your Password*" style="width:100%">
+                                                                <span style="color: red;" class="field_error" id="login_password_error"></span>
+
                                                             </div>
                                                             <p class="require">* Required fields</p>
-                                                            <a href="#">Forgot Passwords?</a>
+                                                          
                                                             <div class="dark-btn">
-                                                                <a href="#">LogIn</a>
+                                                            <button type="button" onclick="login_page()"  class="fv-btn">Login</button>
+
                                                             </div>
                                                         </form>
                                                     </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                  	<form id="register-form" action="#" method="post">
+									<div class="single-contact-form">
+										<div class="contact-box name">
+											<input type="text" id="name" name="name" placeholder="Your Name*" style="width:100%">
+										</div>
+                                        <span style="color: red;" class="field_error" id="name_error"></span>
+									</div>
+									<div class="single-contact-form">
+										<div class="contact-box name">
+											<input type="email" id="email" name="email" placeholder="Your Email*" style="width:100%">
+										</div>
+                                        <span style="color: red;" class="field_error" id="email_error"></span>
+									</div>
+									<div class="single-contact-form">
+										<div class="contact-box name">
+											<input type="text" id="mobile" name="mobile" placeholder="Your Mobile*" style="width:100%">
+										</div>
+                                        <span style="color: red;" class="field_error" id="mobile_error"></span>
+									</div>
+									<div class="single-contact-form">
+										<div class="contact-box name">
+											<input type="password" id="password" name="password" placeholder="Your Password*" style="width:100%">
+										</div>
+                                        <span style="color: red;" class="field_error" id="password_error"></span>
+									</div>
+									
+									<div class="contact-btn">
+										<button type="button" class="fv-btn" onclick="user_register()">Register</button>
+									</div>
+								</form>
+                                <div class="register-msg form-output">
+									<p class="form-messege field_error"></p>
+								</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion__title">
-                                        Billing Information
-                                    </div>
-                                    <div class="accordion__body" style="display: none;">
-                                        <div class="bilinfo">
-                                            <form action="#">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="single-input mt-0">
-                                                            <select name="bil-country" id="bil-country">
-                                                                <option value="select">Select your country</option>
-                                                                <option value="arb">Arab Emirates</option>
-                                                                <option value="ban">Bangladesh</option>
-                                                                <option value="ind">India</option>
-                                                                <option value="uk">United Kingdom</option>
-                                                                <option value="usa">United States</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="First name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Last name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Company name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Street Address">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Apartment/Block/House (optional)">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="City/State">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Post code/ zip">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="email" placeholder="Email address">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Phone number">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="accordion__title">
+                                  <?PHP } ?>
+                                   
+                                    <div class="<?php echo $accordion_class?>">
                                         shipping information
                                     </div>
-                                    <div class="accordion__body" style="display: none;">
-                                        <div class="shipinfo">
-                                            <h3 class="shipinfo__title">Shipping Address</h3>
-                                            <p><b>Address:</b> Bootexperts, Banasree D-Block, Dhaka 1219, Bangladesh</p>
-                                            <a href="#" class="ship-to-another-trigger"><i class="zmdi zmdi-long-arrow-right"></i>Ship to another address</a>
-                                            <div class="ship-to-another-content">
-                                                <form action="#">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="single-input mt-0">
-                                                                <select name="bil-country" id="another-bil-country">
-                                                                    <option value="select">Select your country</option>
-                                                                    <option value="arb">Arab Emirates</option>
-                                                                    <option value="ban">Bangladesh</option>
-                                                                    <option value="ind">India</option>
-                                                                    <option value="uk">United Kingdom</option>
-                                                                    <option value="usa">United States</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="First name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Last name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Company name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Street Address">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Apartment/Block/House (optional)">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="City/State">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Post code/ zip">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="email" placeholder="Email address">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Phone number">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion__title">
-                                        shipping method
-                                    </div>
-                                    <div class="accordion__body" style="display: none;">
-                                        <div class="shipmethod">
-                                            <form action="#">
-                                                <div class="single-input">
-                                                    <p>
-                                                        <input type="radio" name="ship-method" id="ship-fast">
-                                                        <label for="ship-fast">First shipping</label>
-                                                    </p>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptatum quaerat totam hic suscipit quam repellat debitis ad sed aperiam quisquam quibusdam enim labore, ipsa illo, natus ipsam temporibus officia.</p>
-                                                </div>
-                                                <div class="single-input">
-                                                    <p>
-                                                        <input type="radio" name="ship-method" id="ship-normal">
-                                                        <label for="ship-normal">Normal shipping</label>
-                                                    </p>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam maxime, eaque eos! Quidem officia similique, fuga consequatur vero? Quis autem dicta voluptatibus veniam temporibus rem reprehenderit placeat quaerat sunt ducimus.</p>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="accordion__title active">
-                                        payment information
-                                    </div>
-                                    <div class="accordion__body" style="">
-                                        <div class="paymentinfo">
-                                            <div class="single-method">
-                                                <a href="#"><i class="zmdi zmdi-long-arrow-right"></i>Check/ Money Order</a>
-                                            </div>
-                                            <div class="single-method">
-                                                <a href="#" class="paymentinfo-credit-trigger"><i class="zmdi zmdi-long-arrow-right"></i>Credit Card</a>
-                                            </div>
-                                            <div class="paymentinfo-credit-content">
-                                                <form action="#">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="single-input mt-0">
-                                                                <input type="text" placeholder="Name on card">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <select name="bil-country" id="payment-info-type">
-                                                                    <option value="select">Card type</option>
-                                                                    <option value="card-1">Card type 1</option>
-                                                                    <option value="card-2">Card type 2</option>
-                                                                    <option value="card-3">Card type 3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Credit Card Number*">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <select>
-                                                                    <option>Select Month</option>
-                                                                    <option>Jan</option>
-                                                                    <option>Feb</option>
-                                                                    <option>Mar</option>
-                                                                    <option>Apr</option>
-                                                                    <option>May</option>
-                                                                    <option>Jun</option>
-                                                                    <option>Jul</option>
-                                                                    <option>Aug</option>
-                                                                    <option>Sep</option>
-                                                                    <option>Oct</option>
-                                                                    <option>Nov</option>
-                                                                    <option>Dec</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="single-input">
-                                                                <select>
-                                                                    <option>Select Year</option>
-                                                                    <option>2015</option>
-                                                                    <option>2016</option>
-                                                                    <option>2017</option>
-                                                                    <option>2018</option>
-                                                                    <option>2019</option>
-                                                                    <option>2020</option>
-                                                                    <option>2021</option>
-                                                                    <option>2022</option>
-                                                                    <option>2023</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="single-input">
-                                                                <input type="text" placeholder="Card verification number*">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <form method="post">
+										<div class="accordion__body">
+											<div class="bilinfo">
+												
+													<div class="row">
+														<div class="col-md-12">
+															<div class="single-input">
+																<input type="text" name="address" placeholder="Street Address" required>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="single-input">
+																<input type="text" name="city" placeholder="City/State" required>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="single-input">
+																<input type="text" name="pincode" placeholder="Post code/ zip" required>
+															</div>
+														</div>
+														
+													</div>
+												
+											</div>
+										</div>
+										<div class="<?php echo $accordion_class?>">
+											payment information
+										</div>
+										<div class="accordion__body">
+											<div class="paymentinfo">
+												<div class="single-method">
+													COD <input type="radio" name="payment_type" value="COD" required/>
+													&nbsp;&nbsp;PayU <input type="radio" name="payment_type" value="payu" required/>
+												</div>
+												<div class="single-method">
+												  
+												</div>
+											</div>
+										</div>
+										 <input type="submit" name="submit"/>
+									</form>
                                 </div>
                             </div>
+                          
                         </div>
+
                     </div>
+     
                     <div class="col-md-4">
                         <div class="order-details">
                             <h5 class="order-details__title">Your Order</h5>
+                            <?php 
+                            
+                                    $cart_total=0;
+                                    $x=50;
+                                    $y=150;
+                            foreach($_SESSION['cart'] as $key=>$val){
+
+                            $productArr= get_product($conn,'','',$key);
+                            $pname=$productArr[0]['product_name'];
+                            $rmp= $productArr[0]['rmp'];
+                            $price= $productArr[0]['price'];
+                            $image= $productArr[0]['image'];
+                            $qty=$val['qty'];
+                            $cart_total= $cart_total+($price*$qty);
+                                   $total = $qty*$price; 
+                                    ?>
                             <div class="order-details__item">
+
+
                                 <div class="single-item">
                                     <div class="single-item__thumb">
-                                        <img src="images/cart/1.png" alt="ordered item">
+                                    <img src="media/product/<?php echo $productArr['0']['image'];  ?>">
                                     </div>
                                     <div class="single-item__content">
-                                        <a href="#">Santa fe jacket for men</a>
-                                        <span class="price">$128</span>
+                                        <a href="#"><?php echo $pname ?></a>
+                                        <span class="price"><?php echo $price *$qty ?></span>
                                     </div>
                                     <div class="single-item__remove">
-                                        <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                        <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key ?>','remove')"><i class="zmdi zmdi-delete"></i></a>
                                     </div>
                                 </div>
-                                <div class="single-item">
-                                    <div class="single-item__thumb">
-                                        <img src="images/cart/2.png" alt="ordered item">
-                                    </div>
-                                    <div class="single-item__content">
-                                        <a href="#">Santa fe jacket for men</a>
-                                        <span class="price">$128</span>
-                                    </div>
-                                    <div class="single-item__remove">
-                                        <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                    </div>
-                                </div>
+                              
                             </div>
+                            <?php }?>
                             <div class="order-details__count">
                                 <div class="order-details__count__single">
                                     <h5>sub total</h5>
-                                    <span class="price">$909.00</span>
+                                    <span class="price"><?php echo $cart_total; ?></span>
                                 </div>
                                 <div class="order-details__count__single">
                                     <h5>Tax</h5>
-                                    <span class="price">$9.00</span>
+                                    <span class="price"><?php echo $x; ?></span>
                                 </div>
                                 <div class="order-details__count__single">
                                     <h5>Shipping</h5>
-                                    <span class="price">0</span>
+                                    <span class="price"><?php echo $y; ?></span>
                                 </div>
                             </div>
+                            <?php if($cart_total==0){
+                                                $x=0;
+                                                $y=0;
+                                            }else{
+                                                $x=50;
+                                                $y=150;
+                                            } ?>
                             <div class="ordre-details__total">
                                 <h5>Order total</h5>
-                                <span class="price">$918.00</span>
+                                <span class="price"><?php echo $cart_total+$y+$x; ?></span>
                             </div>
                         </div>
                     </div>
@@ -375,3 +240,59 @@ require "func1.php";
             </div>
         </div>
 <?php require "footer.php" ?>
+
+
+
+
+
+
+
+<script>
+function login_page(){
+
+jQuery('.field_error').html('');
+
+var email=jQuery('#login_email').val();
+var password=jQuery('#login_password').val();
+var is_error="";
+
+
+if(email ==""){
+jQuery('#login_email_error').html('entre the email');
+is_error='yes';
+}
+
+if(password == ""){
+	jQuery('#login_password_error').html('entre the password');
+	is_error='yes';
+	
+}
+if(is_error==''){
+
+	jQuery.ajax({
+		url: "user_login.php",
+		type: 'post',
+		data: 
+		{
+					 
+					   email: email,
+					  password: password				
+					},      
+					success:function(result){
+       					 if(result=='valid'){
+							window.Location.href=window.Location.href;
+							} 
+							if(result=="wrong"){
+								jQuery('.register-msg').html('entre the valid email ');
+							
+
+
+							}
+    }
+				
+		});
+
+}
+}
+
+</script>
