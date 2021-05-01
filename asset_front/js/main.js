@@ -522,28 +522,31 @@ function user_register(){
 
 // add to cart 
 
-function manage_cart(pid){
-
-    var name=jQuery('#qty').val();
-
-
-   
+function manage_cart(pid,type){
+    if(type =='update'){
+        
+        var qty=jQuery("#"+pid+"qty").val();
+    }else{
+        var qty=jQuery('#qty').val();
+    
+    }
     jQuery.ajax({
-        url: "manage_cart",
+        url: 'manage_cart.php',
         type: 'post',
         data: 
         {
                      
                        pid: pid,
-                      qty: qty,
-                      type: type				
-                    },      
+                       qty: qty,
+                       type: type,				
+                    },     
                     success:function(result){
-                         jQuery('.htc__qua').result($result);
+                        if(type =='update' || type =='remove'){
+                           window.location.href='cart.php';
+                        }
+                         jQuery('.htc__qua').html(result)
                             
     }
                 
         });
     }
-    
-

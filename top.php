@@ -1,5 +1,10 @@
-<?php include "config.php";
+<?php 
 session_start();
+include "config.php";
+require "add_to_cart.php";
+
+
+
 
 $sql = mysqli_query($conn, "SELECT * FROM categories where status=1 order by categories asc");
 $cat_arr = array();
@@ -9,8 +14,12 @@ while ($row = mysqli_fetch_assoc($sql)) {
  
 }
 
+ $obj = new add_to_cart();
+  $totalProduct = $obj->totalProduct();
+
 
 ?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -71,7 +80,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                             <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
                                 <nav class="main__menu__nav hidden-xs hidden-sm">
                                     <ul class="main__menu">
-                                        <li class="drop" ><a href="index.php">Home</a></li>
+                                        <li class="drop" ><a href="index.php">Home  <?php echo $totalProduct;?></a></li>
 
                                         <?php
                                         foreach($cat_arr as $list){
@@ -124,7 +133,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                                     </div>
                                     <div class="htc__shopping__cart">
                                         <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
-                                        <a href="#"><span class="htc__qua">2</span></a>
+                                        <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct ?></span></a>
                                     </div>
                                 </div>
                             </div>

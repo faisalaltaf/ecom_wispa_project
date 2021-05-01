@@ -1,7 +1,12 @@
 <?php
+  
+require 'config.php';
+
+
 class add_to_cart{
     function addProduct($pid,$qty){
-$_SESSION['cart'][$pid]['qty'] = $qty;
+       
+  $_SESSION['cart'][$pid]['qty'] = $qty;
 
     }
     function updateProduct($pid,$qty){
@@ -21,14 +26,17 @@ function emptyProduct(){
     unset($_SESSION['cart']);
 
 }
+
 function totalProduct(){
     if(isset($_SESSION['cart'])){
-
-     return count($_SESSION['cart']);
+        
+        return count($_SESSION['cart']);
+        
     }else{
         return 0;
     }
-}
+
+    }
 
 }
 
