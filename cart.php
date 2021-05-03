@@ -46,6 +46,7 @@ require "func1.php";
                                     <tbody>
                                     <?php 
                                     $cart_total=0;
+                                    if(isset($_SESSION['cart'])){
                             foreach($_SESSION['cart'] as $key=>$val){
 
                             $productArr= get_product($conn,'','',$key);
@@ -70,7 +71,7 @@ require "func1.php";
                                             <td class="product-subtotal"> <?php echo  $total ?> </td>
                                             <td class="product-remove"><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key ?>','remove')"><i class="icon-trash icons"></i></a></td>
                                         </tr>
-                                        <?php }  ?> 
+                                        <?php } } ?> 
                                         
                                     </tbody>
                                 </table>

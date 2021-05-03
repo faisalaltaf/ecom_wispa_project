@@ -115,8 +115,9 @@ while ($row = mysqli_fetch_assoc($sql)) {
                             </div>
                             <div class="col-md-3 col-lg-2 col-sm-4 col-xs-4">
                                 <div class="header__right">
+                                   
                                     <div class="header__account">
-                                 <?php
+                                    <?php
                                  if(isset($_SESSION['LOGIN_USER'])){
                                     echo  '<a href="logout.php">Logout</a>';
 
@@ -126,10 +127,15 @@ while ($row = mysqli_fetch_assoc($sql)) {
                                  
                                  ?>
 
-                                
                                     </div>
                                     <div class="header__account">
-                                        <a href="#"><i class="icon-user icons"></i></a>
+                                    <?php
+                                 if(isset($_SESSION['LOGIN_USER'])){
+                                    echo  '<a href="myorder.php">My order</a>';
+
+                                 }
+                                 ?>
+
                                     </div>
                                     <div class="htc__shopping__cart">
                                         <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>

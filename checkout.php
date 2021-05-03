@@ -1,6 +1,7 @@
 <?php require "top.php";
 require "config.php";
 require "func1.php";
+
 if(!isset($_SESSION['cart']) || count($_SESSION['cart'])==0){
     ?>
     <script>
@@ -8,10 +9,60 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart'])==0){
     </script>
 <?php
 }
+?>
+
+<?php 
+$cart_total=0;
+
+if(isset($_POST['submit'])){
+	 $address=mysqli_real_escape_string($conn,$_POST['address']);
+     $city=mysqli_real_escape_string($conn,$_POST['city']);
+     $pincode=mysqli_real_escape_string($conn,$_POST['pincode']);
+	 $payment_type=mysqli_real_escape_string($conn,$_POST['payment_type']);
+	 $user_id=$_SESSION['LOGIN_ID'];
+     foreach($_SESSION['cart'] as $key=>$val){
+        	$productArr=get_product($conn,'','',$key);
+        $price=$productArr[0]['price'];
+         	$qty=$val['qty'];
+        	$cart_total=$cart_total+($price*$qty);
+            
+        }
+        $total_price=$cart_total;
+	$payment_status='pending';
+	 if($payment_type=='cod'){
+	 	$payment_status='success';
+	 }
+	$order_status= '1';
+	 $added_on=date('Y-m-d h:i:s');
+	// mysqli_query($conn,"INSERT INTO `order`( `user_id`, `address`, `city`, `pincode`, `payment_type`, `total_price`, `payment_status`, `order_status`, `added_on`) VALUES ('[$user_id]','[$address]','[$city]','[$pincode]','[$payment_type]','[$total_price]','[$payment_status]','[$order_status]','[$added_on]')");
+	mysqli_query($conn,"insert into `order`(user_id,address,city,pincode,payment_type,payment_status,order_status,added_on,total_price) values('$user_id','$address','$city','$pincode','$payment_type','$payment_status','$order_status','$added_on','$total_price')");
+	
+	$order_id=mysqli_insert_id($conn);
+	
+	foreach($_SESSION['cart'] as $key=>$val){
+		$productArr=get_product($conn,'','',$key);
+		$price=$productArr[0]['price'];
+		$qty=$val['qty'];
+		
+		mysqli_query($conn,"INSERT into `order_detail`(order_id,product_id,qty,price) values('$order_id','$key','$qty','$price')");
+	}
+	
+
+    //  unset($_SESSION['cart']);
+    //  ?>
+  <script>
+    //  window.location.href='thankyou.php';
+    //  </script>
+<?php
+}
+	
+   
+?>
+	
 
 
-    ?>
-    <!-- <script>window.location.href='index.php'</script> -->
+    
+   
 
 
 
@@ -155,7 +206,7 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart'])==0){
 										<div class="accordion__body">
 											<div class="paymentinfo">
 												<div class="single-method">
-													COD <input type="radio" name="payment_type" value="COD" required/>
+													COD <input type="radio" name="payment_type" value="cod" required/>
 													&nbsp;&nbsp;PayU <input type="radio" name="payment_type" value="payu" required/>
 												</div>
 												<div class="single-method">

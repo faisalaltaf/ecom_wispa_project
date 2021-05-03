@@ -1,6 +1,11 @@
 <?php require "top.php";
 require "config.php";
-	
+	if(isset($_SESSION['LOGIN_USER']) && $_SESSION['LOGIN_USER'] ==	 'YES'){
+?> <script>
+window.location.href="myorder.php";
+</script>
+<?php
+	}
 
 ?>
 
