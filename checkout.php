@@ -44,15 +44,15 @@ if(isset($_POST['submit'])){
 		$price=$productArr[0]['price'];
 		$qty=$val['qty'];
 		
-		mysqli_query($conn,"INSERT into `order_detail`(order_id,product_id,qty,price) values('$order_id','$key','$qty','$price')");
+		mysqli_query($conn,"INSERT into `order_detail`(order_id,product_id,price,qty) values('$order_id','$key','$price','$qty')");
 	}
 	
 
-    //  unset($_SESSION['cart']);
-    //  ?>
+         unset($_SESSION['cart']);
+      ?>
   <script>
-    //  window.location.href='thankyou.php';
-    //  </script>
+      window.location.href='thankyou.php';
+      </script>
 <?php
 }
 	

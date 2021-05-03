@@ -46,8 +46,8 @@ require "func1.php";
                                         </thead>
                                         <tbody>
                                         <?php   $uid = $_SESSION['LOGIN_ID'];
-                                       
-                                        $result = mysqli_query($conn,"SELECT * FROM  `order`  where user_id=$uid");
+											$result=mysqli_query($conn,"SELECT `order`.*,order_status.name as order_status from `order`,`order_status` where `order`.user_id='$uid' and order_status.id=`order`.order_status");
+                                     
                                     
                                         while($row=mysqli_fetch_assoc($result)){
 
