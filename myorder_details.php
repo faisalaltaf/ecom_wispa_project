@@ -4,6 +4,13 @@ require "config.php";
 
 $order_id=mysqli_real_escape_string($conn,$_GET['id']);
 
+if(!isset($_SESSION['LOGIN_USER'])){
+    ?> <script>
+    window.location.href="index.php";
+    </script>
+    <?php
+        }
+
     ?>
     <!-- <script>window.location.href='index.php'</script> -->
 
@@ -39,8 +46,8 @@ $order_id=mysqli_real_escape_string($conn,$_GET['id']);
                                                 <th class="product-remove"><span class="nobr">Product Name</span></th>
                                               
                                                 <th class="product-name"><span class="nobr">Product Image </span></th>
-                                                <th class="product-price"><span class="nobr"> QTY </span></th>
                                                 <th class="product-stock-stauts"><span class="nobr"> Price </span></th>
+                                                <th class="product-price"><span class="nobr"> QTY </span></th>
                                                 <th class="product-add-to-cart"><span class="nobr">Total Price</span></th>
                                             </tr>
                                         </thead>

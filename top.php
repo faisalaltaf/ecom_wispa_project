@@ -54,7 +54,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
 
 
     <!-- Modernizr JS -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 </head>
 
@@ -80,7 +80,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                             <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
                                 <nav class="main__menu__nav hidden-xs hidden-sm">
                                     <ul class="main__menu">
-                                        <li class="drop" ><a href="index.php">Home  <?php echo $totalProduct;?></a></li>
+                                        <li class="drop" ><a href="index.php">Hom</a></li>
 
                                         <?php
                                         foreach($cat_arr as $list){
@@ -105,14 +105,17 @@ while ($row = mysqli_fetch_assoc($sql)) {
                                         <li class="drop"><a href="categories.php?id=<?php echo $list['id'] ?>"><?php echo $list['categories']?></a></li>
                                         <?php }?>
                                             
-                                            <li><a href="contact.php">contact</a></li>
+
+
                                         </ul>
+                                        
                                     </nav>
                                 </div>
                                 </nav>
 
 
                             </div>
+                            
                             <div class="col-md-3 col-lg-2 col-sm-4 col-xs-4">
                                 <div class="header__right">
                                    
@@ -151,3 +154,5 @@ while ($row = mysqli_fetch_assoc($sql)) {
             <!-- End Mainmenu Area -->
         </header>
         <!-- End Header Area -->
+
+    </div></body></html>

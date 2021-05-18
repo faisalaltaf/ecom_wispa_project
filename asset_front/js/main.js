@@ -553,3 +553,52 @@ function manage_cart(pid,type){
                 
         });
     }
+
+
+    // login
+    function login_page(){
+
+        jQuery('.field_error').html('');
+        
+        var email=jQuery('#login_email').val();
+        var password=jQuery('#login_password').val();
+        var is_error="";
+        
+        
+        if(email ==""){
+        jQuery('#login_email_error').html('entre the email');
+        is_error='yes';
+        }
+        
+        if(password == ""){
+            jQuery('#login_password_error').html('entre the password');
+            is_error='yes';
+            
+        }
+        if(is_error==''){
+        
+            jQuery.ajax({
+                url: "user_login.php",
+                type: 'post',
+                data: 
+                {
+                             
+                               email: email,
+                              password: password				
+                            },      
+                            success:function(result){
+                                    if(result=='valid'){
+                                    window.Location.href=window.Location.href;
+                                    } 
+                                    if(result=="wrong"){
+                                        jQuery('.register-msg').html('entre the valid email ');
+                                    
+        
+        
+                                    }
+            }
+                        
+                });
+        
+        }
+        }

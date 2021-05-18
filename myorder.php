@@ -1,7 +1,13 @@
+
 <?php require "top.php";
 require "config.php";
 require "func1.php";
-
+if(!isset($_SESSION['LOGIN_USER'])){
+    ?> <script>
+    window.location.href="index.php";
+    </script>
+    <?php
+        }
 
 
     ?>

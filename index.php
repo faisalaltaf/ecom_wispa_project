@@ -150,7 +150,6 @@ require "config.php";
                                 //  $sql = "SELECT* FROM product";
                                function  get_product($conn, $type='', $limit=''){
                                 $sql ="SELECT * FROM product where status = 1";
-                                $conn =mysqli_connect("localhost","root","","project") or die("Connection failed : " . mysqli_connect_error());
                                 if($type=='latest'){
                         
                                     $sql.="  order by id desc ";
@@ -195,8 +194,9 @@ require "config.php";
                                     <div class="fr__product__inner">
                                         <h4><a href="product-details.html"><?php echo $list['product_name'] ?></a></h4>
                                         <ul class="fr__pro__prize">
-                                            <li class="old__prize"><?php echo $list['rmp'] ?></li>
-                                            <li><?php echo $list['price'] ?></li>
+                                           
+                                            <li ><p><?php echo $list['price'] . $list['currency_symbal'] ?> </p></li>
+                                            
                                         </ul>
                                     </div>
                                 </div>

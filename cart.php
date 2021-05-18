@@ -66,7 +66,7 @@ require "func1.php";
                                                     <li>$75.2</li>
                                                 </ul> -->
                                             </td>
-                                            <td class="product-price"><span class="amount"><?php echo $rmp ?></span></td>
+                                            <td class="product-price"><span class="amount"><?php echo $price ?></span></td>
                                             <td class="product-quantity"><input type="number" id="<?php echo $key?>qty" value="<?php echo $qty?>"><br><span><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','update')">update</a></span></td>
                                             <td class="product-subtotal"> <?php echo  $total ?> </td>
                                             <td class="product-remove"><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key ?>','remove')"><i class="icon-trash icons"></i></a></td>

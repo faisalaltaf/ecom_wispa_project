@@ -3546,7 +3546,7 @@ ul.htc__instagram__posts.owl-carousel li img {
     transition: all 0.3s ease-in-out 0s;
 }
 .dark-btn a:hover{
-    background: #c43b68;
+    background: #b65374;
 }
 
 .slider__activation__wrap--5.slick-initialized.slick-slider {
@@ -3560,6 +3560,7 @@ ul.htc__instagram__posts.owl-carousel li img {
 }
 .ht__cat__thumb a img {
     width: 100%;
+    height: 190px;
 }
 .slick-initialized .slick-slide {
     outline: none;

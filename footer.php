@@ -105,7 +105,7 @@
                                 <a href="#"><img src="asset_front/images/others/shape/paypol.png" alt="payment images"></a>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
             </div>
             <!-- End Copyright Area -->
@@ -128,7 +128,7 @@
     <script src="asset_front/js/waypoints.min.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="asset_front/js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	 -->

@@ -35,14 +35,16 @@ window.location.href="myorder.php";
                                         <span style="color: red;" class="field_error" id="login_password_error"></span>
 
 									</div>
-									
+									<div class="register-msg form-output">
+								<div class="login_msg  form-output">
+                                    <span id="available"></span>
+                                </div>
+								</div>
 									<div class="contact-btn">
 										<button type="button" onclick="login_page()"  class="fv-btn">Login</button>
 									</div>
 								</form>
-								<div class="register-msg form-output">
-									<p class="form-messege field_error"></p>
-								</div>
+						
 							</div>
 						</div> 
                 
@@ -87,8 +89,8 @@ window.location.href="myorder.php";
 										<button type="button" class="fv-btn" onclick="user_register()">Register</button>
 									</div>
 								</form>
-                                <div class="register-msg form-output">
-                                    <p class="form-messege field_error"></p>
+                                <div class="login_msg  form-output">
+                                    <span id="available2"></span>
                                 </div>
 							</div>
 						</div> 
@@ -123,28 +125,23 @@ if(password == ""){
 	
 }
 if(is_error==''){
-
-	jQuery.ajax({
-		url: "user_login.php",
-		type: 'post',
-		data: 
-		{
-					 
-					   email: email,
-					  password: password				
-					},      
-					success:function(result){
-       					 if(result=='valid'){
-							window.Location.href='product.php';
-							} 
-							if(result=='wrong'){
-								jQuery('.register-msg').html('entre the valid email ');
-
-							}
-    }
+		jQuery.ajax({
+		
+			url:'user_login.php',
+			type:'post',
+			data:'email='+email+'&password='+password,
+			success:function(result)
+			{
+				{
+					window.location.href = window.location.href;
+				}{
+					jQuery('#available').html('the is wrong data insert');
+						}
 				
+			}	
 		});
 
+	
 }
 }
 

@@ -76,8 +76,20 @@ if ($product_id > 0) {
                         <p class="pro__info">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan</p>
                         <div class="ht__pro__desc">
                             <div class="cr__btn">
-                                <a href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['id'] ?>','add')">CHECKOUT</a>
+                                <a  href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['id'] ?>','add')"> add to Cart</a>
                             </div>
+                            <div class="py-4">
+                            <ul class="py-4">
+                                        
+                               <li>
+                        <small><?php echo $get_product['0']['currency_symbal'] ?></small>
+                        <small><?php echo $get_product['0']['price'] ?></small>
+                               </li>             
+                                        </ul>
+                                        <a href="javascript:void(0)" onclick="manage_cart('<?php echo $get_product['0']['id'] ?>','add')"> <a href="checkout.php">checkout</a></a>
+
+                            </div>
+                            
                             <div class="sin__desc align--left">
                                 <p>QTY:</p>
                                 <select id="qty" class="select__size">
